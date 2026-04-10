@@ -84,6 +84,25 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Canonicalize on rayhanmirja.com — Vercel preview/production URLs
+  // (*.vercel.app) stay reachable by default, which splits SEO and lets
+  // the site load under two different hostnames. This 308s any request
+  // whose Host header ends in .vercel.app over to the custom domain.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "(?<host>.*\\.vercel\\.app)",
+          },
+        ],
+        destination: "https://rayhanmirja.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
