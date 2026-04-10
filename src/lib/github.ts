@@ -22,10 +22,10 @@ export async function getFeaturedProjects(): Promise<ExternalProject[]> {
     try {
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`, {
             headers,
-            // Cache featured project listing for 10 minutes. GitHub's anonymous
-            // rate limit is 60 req/hr, so anything below ~60s risks 429s under
-            // traffic spikes even with a PAT we want to be conservative.
-            next: { revalidate: 600 }
+            // Cache for 10 minutes to protect GitHub's rate limit
+            // (60 req/hr anonymous, 5,000 req/hr with GITHUB_TOKEN set).
+            // The `tags` entry lets us manually revalidate via revalidateTag.
+            next: { revalidate: 600, tags: ["github-featured"] },
         });
 
         if (!response.ok) {
