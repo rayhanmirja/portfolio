@@ -1,16 +1,19 @@
 import type { NextConfig } from "next";
 
-const requiredEnv = ["WEB3FORMS_ACCESS_KEY"] as const;
-const optionalEnv = ["GITHUB_TOKEN", "MEASUREMENT_ID", "NEXT_PUBLIC_TURNSTILE_SITE_KEY"] as const;
+// Env vars are warned about — never thrown — so a missing key cannot break
+// the build on a fresh CI environment (e.g. Netlify/Vercel first deploy).
+// The contact route is responsible for failing loudly at runtime if
+// WEB3FORMS_ACCESS_KEY is unset when a submission is attempted.
+const expectedEnv = [
+  "WEB3FORMS_ACCESS_KEY",
+  "GITHUB_TOKEN",
+  "MEASUREMENT_ID",
+  "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
+] as const;
 
-for (const key of requiredEnv) {
+for (const key of expectedEnv) {
   if (!process.env[key]) {
-    throw new Error(`Missing required env var: ${key}`);
-  }
-}
-for (const key of optionalEnv) {
-  if (!process.env[key]) {
-    console.warn(`Optional env var not set: ${key}`);
+    console.warn(`[next.config] env var not set: ${key}`);
   }
 }
 
