@@ -67,6 +67,31 @@ body {
   scrollbar-width: none;
 }
 
+/*
+ * Hero fade-in. Replaces the framer-motion animation on the LCP element so
+ * the above-the-fold paint doesn't wait on motion hydration.
+ */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  animation: hero-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in {
+    animation: none;
+  }
+}
+
 /* Lenis Smooth Scroll Recommended CSS */
 html.lenis,
 html.lenis body {

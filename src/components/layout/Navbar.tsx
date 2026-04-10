@@ -96,7 +96,12 @@ export function Navbar({ posts = [] }: { posts?: PostSummary[] }) {
 
                     <div className={`flex-none flex items-center pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-50 ${isScrolled ? 'md:-translate-y-16 md:opacity-0' : 'translate-y-0 opacity-100'}`}>
                         <Link href="/" className="flex items-center justify-center -ml-2 sm:ml-0 hover:scale-105 transition-transform">
-                            <Image src="/rm-logo.png" alt="Rayhan Mirja" width={769} height={631} priority className="h-9 md:h-10 w-auto object-contain" />
+                            {/*
+ * Rendered at ~36–40px tall → ~49px wide. `sizes` tells next/image to
+ * generate a correctly-sized srcset instead of shipping the full 769px
+ * asset on the mobile preload path.
+ */}
+<Image src="/rm-logo.png" alt="Rayhan Mirja" width={769} height={631} priority sizes="49px" className="h-9 md:h-10 w-auto object-contain" />
                         </Link>
                     </div>
 

@@ -7,6 +7,9 @@ import Link from "next/link";
 import { getPostBySlug, getAllPosts } from "@/lib/posts";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 
 interface PostParams {
@@ -67,7 +70,7 @@ export default async function SinglePostPage({ params }: PostParams) {
           <Link href="/author" className="flex items-center gap-3 mt-4 group w-fit">
               <div className="w-[30px] h-[30px] rounded-full bg-black/5 dark:bg-zinc-800 border border-black/10 dark:border-white/10 relative overflow-hidden">
                   <Image
-                      src="/profile.png"
+                      src="/Rayhan.jpg"
                       alt="Rayhan Mirja"
                       fill
                       sizes="30px"
@@ -94,7 +97,10 @@ export default async function SinglePostPage({ params }: PostParams) {
 
         {/* Markdown Content Block */}
         <div className="prose md:prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline prose-p:leading-relaxed prose-li:leading-relaxed">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+          >
             {post.content}
           </ReactMarkdown>
         </div>

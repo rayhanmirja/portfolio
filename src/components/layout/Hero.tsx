@@ -1,16 +1,13 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 export function Hero() {
     return (
         <section className="relative w-full max-w-4xl mx-auto px-6 sm:px-8 md:px-12 pt-32 md:pt-48 pb-20 flex flex-col items-center justify-center text-center">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="text-center w-full max-w-5xl mx-auto flex flex-col items-center"
-            >
+            {/*
+              Hero is the mobile LCP element. We deliberately avoid framer-motion
+              here — a CSS-only fade-up keeps the LCP paint on the critical path
+              with zero extra JS hydration cost, which is what recovers the
+              mobile Lighthouse score.
+            */}
+            <div className="hero-fade-in text-center w-full max-w-5xl mx-auto flex flex-col items-center">
 
                 {/* Main Headline */}
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold lg:font-semibold tracking-tighter text-[var(--color-foreground)] leading-[1.05] mb-8">
@@ -43,7 +40,7 @@ export function Hero() {
                     </a>
                 </div>
 
-            </motion.div>
+            </div>
         </section>
     );
 }

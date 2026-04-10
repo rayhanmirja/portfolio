@@ -23,7 +23,7 @@ export default function AuthorPage() {
                 <div className="flex flex-col items-center mb-16 text-center">
                     <div className="w-[90px] h-[90px] rounded-full bg-zinc-800 border-[3px] border-black/5 dark:border-white/5 mb-6 shadow-md relative overflow-hidden">
                         <Image
-                            src="/profile.png"
+                            src="/Rayhan.jpg"
                             alt="Rayhan Mirja"
                             fill
                             sizes="90px"
