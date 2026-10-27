@@ -3,7 +3,8 @@ title: "Auditing My Life for Friction"
 date: "October 27, 2026"
 category: "Building in Public"
 isFeatured: false
-readTime: "6 min read"
+thumbnail: "/posts/auditing-my-life-for-friction.jpg"
+readTime: "5 min read"
 ---
 
 Right now I'm running a YouTube channel, a second channel for coding, a software engineering degree, an agency, and a language I started from zero. Each is manageable alone, but together they leave almost no slack, and small problems start to matter. A shoot starts late, or Japanese reviews pile up after one skipped night.
